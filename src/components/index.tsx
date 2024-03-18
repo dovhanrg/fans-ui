@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Login from "./Login";
 import Register from "./Register";
 import {Link, MemoryRouter, Route, Routes} from "react-router-dom";
+import {addUserRoute, authRoute} from "../constants";
 
 
 export default function App() {
@@ -24,7 +25,7 @@ export default function App() {
         const formData = new FormData(event.currentTarget);
         const login = formData.get('login-name') as string;
         const password = formData.get('login-password') as string;
-        fetch('http://localhost:4000/auth/login', {
+        fetch(authRoute, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ export default function App() {
         const login = formData.get('register-name') as string;
         const password = formData.get('register-password') as string;
         const email = formData.get('register-email') as string;
-        fetch('http://localhost:4000/api/v1/add-user', {
+        fetch(addUserRoute, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
